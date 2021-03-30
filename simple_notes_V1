@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+# simple_notes
+# This script create a file and include notes
+# Author: Rocken2k
+
+
+
+
+#get the date
+date=$(date)
+
+#get the topic
+topic="$1"
+
+#filename to write to
+filename="${HOME}/Desktop/LearnBash/${topic}_notes.txt"
+
+# Ask user for input
+read -p "Your note: " note
+
+
+if [[ $note ]]; then 
+	echo "$date: $note" >> "$filename"
+	echo "Note '$note' saved to $filename"
+else
+	echo "No input; note was not saved."
+fi
+ 
+
+#Read files
+#todanota=$(cat /root/Desktop/LearnBash/notes.txt)
+#echo $todanota

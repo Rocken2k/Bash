@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# create_script
+# This script creates a new bash script, sets permission and more
+# Author: Rocken2k
+
+
+# if there is and argument
+
+if [[ ! $1 ]]; then 
+	echo "Missing argument"
+	exit 1
+fi
+
+#defining variable
+
+scriptname="$1"
+bindir="${HOME}/Desktop/LearnBash"
+filename="${bindir}/${scriptname}"
+
+#Check if the file exist
+if [[ -e $filename ]]; then 
+	echo "File ${filename} already exist"
+	exit 1
+fi
+
+
+
+#check if the file exist in linux
+if type "$scriptname"; then
+	echo "There is already a command with name ${scriptname}"
+	exit 1
+fi
+
+
+
+# Check bin directory exist
+if [[ ! -d $bindir ]]; then 
+	if mkdir "$bindir"; then
+		echo "create ${bindir}"
+	else
+		echo"Could not create ${bindir}."
+		exit1
+	fi
+fi
+
+#Create a script with a single line
+echo '#!/bin/bash' > "$filename"
+#Add executable permission
+chmod u+x "$filename"
+#Open editor Leafpad if possible
+if [[ leafpad ]]; then
+	leafpad "$filename"
+fi
+
